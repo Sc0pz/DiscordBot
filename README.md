@@ -8,6 +8,8 @@ CoolRanch is my first discord bot and first time programming using Python.
 
 ## Technical Information
 
+![CoolRanch](Images/CoolRanch.png)
+
 CoolRanch is hosted on Repl.it, a free online IDE. We're currently experimenting simulating an "always on" Discord bot hosted through Repl.it by using an UpTimeRobot to ping the Discord bot every five minutes to keep it awake.
 
 ## Resources and Tech Stack
