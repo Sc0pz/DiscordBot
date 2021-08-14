@@ -4,6 +4,7 @@ class Pin(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
+    @commands.guild_only()
     @commands.command()
     async def pin(self, ctx, *args):
         #Grabs values that test is user has permissions in the channel to pin
