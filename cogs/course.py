@@ -1,7 +1,6 @@
 from discord.ext import commands
 from urllib.request import urlopen
 import discord
-import uwuify
 import random
 
 class Course(commands.Cog):
@@ -108,11 +107,7 @@ class Course(commands.Cog):
             
             #Adds all items to discord embed and sends.
             Embed = discord.Embed(title=classID, colour=discord.Colour.dark_green(), url=url)
-            uselessRand = random.randint(1, 69)
-            if (uselessRand == 69):
-                Embed.add_field(name=className, value=uwuify.uwu(class_desc))
-            else:
-                Embed.add_field(name=className, value=class_desc)
+            Embed.add_field(name=className, value=class_desc)
             await ctx.send(embed=Embed)
 
 def setup(bot):
