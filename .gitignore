@@ -1,7 +1,3 @@
 .vscode/
 **/__pycache__
-botOLD.py
-test.py
 .env
-connect.py
-disconnect.py
