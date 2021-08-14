@@ -11,14 +11,22 @@
 #-----------------------------------------
 import os
 import asyncio
+import pymongo
+from pymongo import errors
 
 import discord
 from dotenv import load_dotenv
 from discord.ext import commands
 
-
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN') 
+
+# connect to database - shamelessly stolen from sumo
+try:
+    db = pymongo.MongoClient(os.getenv('DB_REMOTE_URL'))["botdb"]
+except pymongo.errors.ConfigurationError:
+    print("Connecting to the database took too long! Are you connected to the internet?")
+    exit(100)
 
 bot = commands.Bot(command_prefix=',')
 
