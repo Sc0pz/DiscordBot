@@ -110,5 +110,10 @@ class Course(commands.Cog):
             Embed.add_field(name=className, value=class_desc)
             await ctx.send(embed=Embed)
 
+    @commands.command()
+    async def honorcode(self, ctx):
+        Embed = discord.Embed(title='Honor Code Statement', description='To promote a stronger sense of mutual responsibility, respect, trust, and fairness among all members of the George Mason University Community and with the desire for greater academic and personal achievement, we, the student members of the university community, have set for this Honor Code: Student Members of the George Mason University community pledge not to cheat, plagiarize, steal, or lie in matters related to academic work.', colour = discord.Colour.dark_green())
+        await ctx.send(embed=Embed)
+
 def setup(bot):
     bot.add_cog(Course(bot))
