@@ -6,9 +6,9 @@ class Invites(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    #@commands.has_permissions(administrator=True)
+    @commands.has_permissions(administrator=True)
     @commands.guild_only()
-    @commands.command()
+    @commands.command(pass_context=True)
     async def invites(self, ctx, *args):
         #Grab all invites in server
         invitesList = await ctx.guild.invites()
@@ -50,7 +50,7 @@ class Invites(commands.Cog):
         
         await ctx.send(embed=Embed)
     
-    
+    @commands.has_permissions(administrator=True)
     @commands.guild_only()
     @commands.command()
     async def revokeinvite(self, ctx, *args):
@@ -96,6 +96,7 @@ class Invites(commands.Cog):
         except:
             print("An error occurred in sending the embed")
 
+    @commands.has_permissions(administrator=True)
     @commands.guild_only()
     @commands.command()
     async def inviteinfo(self, ctx, *args):
@@ -140,6 +141,15 @@ class Invites(commands.Cog):
         #    Embed.add_field(name='Expires in:', value=f'{int(timeLeftDays)} days, {int(timeLeftHours)} hours, {int(timeLeftMinutes)} minutes, {int(timeLeftSeconds)} seconds.')
 
         await ctx.send(embed=Embed)
+        
+    #Exception handling catches MissingPermissions error and notifies the user they don't have the permissions for these commands.    
+    @inviteinfo.error
+    @revokeinvite.error
+    @invites.error
+    async def inviteserror(self, ctx, error):
+        #await ctx.send(type(error))
+        if isinstance(error, commands.MissingPermissions):
+            await ctx.send("You are missing Administrator permission(s) to run this command.")
 
 def setup(bot):
     bot.add_cog(Invites(bot))
